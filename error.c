@@ -9,13 +9,13 @@
 #include <signal.h>
 #include <syslog.h>
 #include <regex.h>
-#if defined(__GLIBC__)
+#if defined(__GLIBC__) && !defined(__UCLIBC__)
 #include <execinfo.h>
 #endif
 
 void print_trace(void)
 {
-#if defined(__GLIBC__)
+#if defined(__GLIBC__) && !defined(__UCLIBC__)
 	void *array[MAX_BACKTRACE_LENGTH];
 	size_t size;
 
@@ -39,7 +39,7 @@ void error_exit(char *format, ...)
 	printf("\n\n\nDebug information:\n");
 	if (errno) fprintf(stderr, "errno: %d=%s (if applicable)\n", errno, strerror(errno));
 
-#if defined(__GLIBC__)
+#if defined(__GLIBC__) && !defined(__UCLIBC__)
 	print_trace();
 #endif
 
