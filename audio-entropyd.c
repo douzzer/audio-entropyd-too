@@ -1021,11 +1021,12 @@ void usage(void)
 	fprintf(stderr, "--spike-channel-mask, -c []  Mask of channels to search for spikes in, bitwise-or of 1 for channel zero, 2 for channel one\n");
 	fprintf(stderr, "--spike-minimum-interval-frames, -i []  Reject spikes closer than this many raw frames apart (relative to requested sample rate)\n");
 	fprintf(stderr, "--spike-test-mode      Run spike mode for testing -- print events, and don't add entropy to the entropy pool\n");
-	fprintf(stderr, "--spike-log <path>         Record spike histogram data to <path>\n");
+	fprintf(stderr, "--spike-log <path>     Record spike histogram data to <path>\n");
 	fprintf(stderr, "--spike-log-interval-seconds []   Duration of histogram bins in seconds\n");
 
 	fprintf(stderr, "--skip-test,    -s     Do not check if data is random enough.\n");
 	fprintf(stderr, "--do-not-fork   -n     Do not fork.\n");
+	fprintf(stderr, "--file <path>   -f     Store raw randomness data to path (while still adding randomness to kernel pool).\n");
 	fprintf(stderr, "--verbose,      -v     Be verbose.\n");
 	fprintf(stderr, "--help,         -h     This help.\n");
 	fprintf(stderr, "\n");
