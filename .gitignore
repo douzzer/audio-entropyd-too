@@ -1,0 +1,8 @@
+build/
+gitignore/
+bak/
+*~
+\#*#
+.#*
+*.o
+audio-entropyd-too

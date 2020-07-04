@@ -11,8 +11,11 @@ TARGETS=audio-entropyd
 
 all: $(TARGETS) 
 
-audio-entropyd: audio-entropyd.o error.o proc.o val.o RNGTEST.o error.o
+audio-entropyd: audio-entropyd.o error.o proc.o val.o RNGTEST.o error.o aes.o
 	$(CC) $(LDFLAGS) -o $@ $^ $(LFLAGS) 
+
+aes.o: aes.c aes.h
+	$(CC) -c $(CFLAGS) -DCONFIGURE_DETECTS_BYTE_ORDER=1 -DDATA_ALWAYS_ALIGNED=1 -o $@ $<
 
 install: audio-entropyd
 	cp audio-entropyd /usr/local/sbin/
