@@ -46,7 +46,7 @@
 
 #define RANDOM_DEVICE				"/dev/random"
 #define DEFAULT_SAMPLE_RATE			11025
-#define PID_FILE				"/var/run/audio-entropyd.pid"
+#define PID_FILE				"/var/run/audio-entropyd-too.pid"
 #define DEFAULT_CLICK_READ			(1 * DEFAULT_SAMPLE_RATE)
 #define DEFAULT_POOLSIZE_FN                     "/proc/sys/kernel/random/poolsize"
 #define	RNGTEST_PENALTY				(20000 / 8) /* how many bytes to skip when the rng-test fails */
@@ -233,9 +233,9 @@ int main(int argc, char **argv)
 	signal(SIGUSR1, logging_handler);
 	signal(SIGUSR2, logging_handler);
 
-	openlog("audio-entropyd", LOG_CONS, LOG_DAEMON);
+	openlog("audio-entropyd-too", LOG_CONS, LOG_DAEMON);
 
-	dolog(LOG_INFO, "audio-entropyd starting up");
+	dolog(LOG_INFO, "audio-entropyd-too starting up");
 
 	if (mlockall(MCL_FUTURE | MCL_CURRENT) == -1)
 		perror("mlockall");
@@ -1008,7 +1008,7 @@ static void seed_continually_with_random_spike_data(int sample_rate, int skip_sa
 
 void usage(void)
 {
-	fprintf(stderr, "Usage: audio-entropyd [options]\n\n");
+	fprintf(stderr, "Usage: audio-entropyd-too [options]\n\n");
 	fprintf(stderr, "Collect entropy from a soundcard and feed it into the kernel random pool.\n");
 	fprintf(stderr, "\n");
 	fprintf(stderr, "Options:\n");
@@ -1047,7 +1047,7 @@ void gracefully_exit(int signum)
 			perror("munlockall");
 	}
 	unlink(PID_FILE);
-	dolog(LOG_INFO, "audio-entropyd stopping due to signal %d", signum);
+	dolog(LOG_INFO, "audio-entropyd-too stopping due to signal %d", signum);
 	exit(0);
 }
 
