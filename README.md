@@ -32,7 +32,7 @@ Options:
 --help,         -h     This help.
 ```
 
-Note that in `--spike-mode`, randomness stored with --file is
+Note that in `--spike-mode`, randomness stored with `--file` is
 completely raw, to expose any statistical regularities, whereas it is
 whitened with AES128, using an unrecorded one-time key, before passing
 it to the kernel randomness pool.
@@ -43,6 +43,7 @@ For Geiger-Müller input on left channel of a 192k soundcard at `hw:0`
 (the default device):
 ```
 /usr/local/sbin/audio-entropyd-too -N 192000 --file /var/log/audio-entropyd.random --spike-mode --spike-threshold-percent 50 --spike-edge-min-delta-percent 20 --spike-channel-mask 1 --spike-minimum-interval-frames 100 --spike-log /var/log/radiation.log --spike-log-interval-seconds 60```
+```
 
 ## Performance
 
